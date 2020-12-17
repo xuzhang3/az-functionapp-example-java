@@ -4,11 +4,9 @@ pipeline {
     environment {
         AZURE_SUBSCRIPTION_ID='85b3dbca-5974-4067-9669-67a141095a76'
         AZURE_TENANT_ID='72f988bf-86f1-41af-91ab-2d7cd011db47'
-        CONTAINER_REGISTRY='xzacrjenkins'
-        RESOURCE_GROUP='xz-acr-test'
-        REPO="hello"
-        IMAGE_NAME="release-preview"
-        TAG="v101"
+        RESOURCE_GROUP='xz-jenkins-test'
+        FUNCAPP='my-functionapp'
+        ARTIFACT='myFunctionapp.zip'
     }
 
     stages {
@@ -18,8 +16,8 @@ pipeline {
                             sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
                             sh 'az account set -s $AZURE_SUBSCRIPTION_ID'
                             sh 'az account show --output json'
-                            sh 'az acr login --name $CONTAINER_REGISTRY --resource-group $RESOURCE_GROUP'
-                            sh 'az acr build --image $REPO/$IMAGE_NAME:$TAG --registry xzacrjenkins --file Dockerfile . '
+                            sh 'zip  -r myFunctionApp.zip ./*'
+                            sh 'az functionapp deployment source config-zip -n xz-functionapp -g $RESOURCE_GROUP -n $FUNCAPP --src $ARTIFACT --build-remote=true'
                         }
             }
         }
