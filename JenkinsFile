@@ -5,7 +5,7 @@ pipeline {
         AZURE_SUBSCRIPTION_ID='85b3dbca-5974-4067-9669-67a141095a76'
         AZURE_TENANT_ID='72f988bf-86f1-41af-91ab-2d7cd011db47'
         RESOURCE_GROUP='xz-jenkins-test'
-        FUNCAPP='my-functionapp'
+        FUNCAPP='xz-jenkins-funcapp'
         ARTIFACT='myFunctionapp.zip'
     }
 
