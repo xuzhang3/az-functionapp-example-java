@@ -23,6 +23,6 @@ steps:
 
 - task: SonarQubePrepare@4
   inputs:
-    SonarQube: 'sonar'
+    SonarQube: 'sonarqube-mainframe'
     scannerMode: 'Other'
 - task: SonarQubeAnalyze@4
